@@ -7,18 +7,17 @@ import (
 
 func CompleteCommand() cli.Command {
 	return cli.NewCommand("complete", "complete a reminder").
-		WithOption(cli.NewOption("id", "ID of the reminder to complete").
-			WithChar('n').
-			WithType(cli.TypeInt)).
+		WithShortcut("co").
+		WithArg(cli.NewArg("id", "ID of the reminder to complete")).
 		WithAction(completeAction)
 }
 
 func completeAction(args []string, options map[string]string) int {
-	if options["id"] == "" {
+	if len(args) == 0 {
 		fmt.Println("ID is required for option Complete")
 		return 1
 	}
 
-	fmt.Println("Completing " + options["id"])
+	fmt.Println("Completing " + args[0])
 	return 0
 }
