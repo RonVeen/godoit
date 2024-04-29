@@ -7,16 +7,15 @@ import (
 	"strconv"
 )
 
-func CompleteCommand() cli.Command {
-	return cli.NewCommand("complete", "complete a reminder").
-		WithShortcut("co").
+func UndoCommand() cli.Command {
+	return cli.NewCommand("undo", "Undo completing of a reminder").
 		WithArg(cli.NewArg("id", "ID of the reminder to complete")).
-		WithAction(completeAction)
+		WithAction(undoAction)
 }
 
-func completeAction(args []string, options map[string]string) int {
+func undoAction(args []string, options map[string]string) int {
 	if len(args) == 0 {
-		fmt.Println("ID is required for option Complete")
+		fmt.Println("ID is required for option Undo")
 		return 1
 	}
 
@@ -30,9 +29,9 @@ func completeAction(args []string, options map[string]string) int {
 	found := false
 	for i, todo := range todos {
 		if todo.Id == id {
-			todos[i].Done = true
+			todos[i].Done = false
 			found = true
-			fmt.Printf("Completed %d (%s)\n", todo.Id, todo.Text)
+			fmt.Printf("Todo %d (%s) is reverted back to undone\n", todo.Id, todo.Text)
 		}
 	}
 
