@@ -1,3 +1,6 @@
- Todos due on {{.Due}}
+
+Todos due on {{.Due}}
+=======================
 {{range .Todos}} {{if .Done}}✔{{else}} {{end}} {{.Id}} {{.Text}}
 {{end}}
+
