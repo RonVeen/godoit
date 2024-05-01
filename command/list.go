@@ -16,7 +16,7 @@ func ListCommand() cli.Command {
 			WithChar('c').
 			WithType(cli.TypeBool)).
 		WithOption(cli.NewOption("all", "Show all, regardless of date").
-			WithChar('c').
+			WithChar('a').
 			WithType(cli.TypeBool)).
 		WithOption(cli.NewOption("due", "alternative due date (format yyyymmmdd)").
 			WithChar('d').
